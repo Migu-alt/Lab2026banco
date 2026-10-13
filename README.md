@@ -1,12 +1,12 @@
 # Lab12026p — Banco
 
-[![CI/CD Pipeline](https://github.com/<USUARIO>/<REPO>/actions/workflows/build.yml/badge.svg)](https://github.com/<USUARIO>/<REPO>/actions/workflows/build.yml)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=<PROJECT_KEY>&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=<PROJECT_KEY>)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=<PROJECT_KEY>&metric=coverage)](https://sonarcloud.io/summary/new_code?id=<PROJECT_KEY>)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=<PROJECT_KEY>&metric=bugs)](https://sonarcloud.io/summary/new_code?id=<PROJECT_KEY>)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=<PROJECT_KEY>&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=<PROJECT_KEY>)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=<PROJECT_KEY>&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=<PROJECT_KEY>)
-[![Known Vulnerabilities](https://snyk.io/test/github/<USUARIO>/<REPO>/badge.svg)](https://snyk.io/test/github/<USUARIO>/<REPO>)
+[![CI/CD Pipeline](https://github.com/Migu-alt/lab12026p/actions/workflows/build.yml/badge.svg)](https://github.com/Migu-alt/lab12026p/actions/workflows/build.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=Migu-alt_Lab2026banco&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Migu-alt_Lab2026banco)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Migu-alt_Lab2026banco&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Migu-alt_Lab2026banco)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Migu-alt_Lab2026banco&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Migu-alt_Lab2026banco)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Migu-alt_Lab2026banco&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Migu-alt_Lab2026banco)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Migu-alt_Lab2026banco&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Migu-alt_Lab2026banco)
+[![Known Vulnerabilities](https://snyk.io/test/github/Migu-alt/lab12026p/badge.svg)](https://snyk.io/test/github/Migu-alt/lab12026p)
 
 Aplicación bancaria sencilla compuesta por:
 

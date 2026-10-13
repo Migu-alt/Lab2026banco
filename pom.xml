@@ -18,8 +18,8 @@
 		<java.version>17</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<!-- SonarCloud (ajustar con los valores de su cuenta: Information > Project Key / Organization Key) -->
-		<sonar.projectKey>TU_USUARIO_Lab2026banco</sonar.projectKey>
-		<sonar.organization>TU_USUARIO</sonar.organization>
+		<sonar.projectKey>Migu-alt_Lab2026banco</sonar.projectKey>
+		<sonar.organization>migu-alt</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
