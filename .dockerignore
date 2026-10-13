@@ -1,0 +1,10 @@
+target
+.git
+.github
+.idea
+frontend
+HELP.md
+*.md
+.env
+.env.*
+!.env.example
