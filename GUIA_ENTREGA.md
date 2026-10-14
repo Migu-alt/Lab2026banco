@@ -33,15 +33,14 @@ git push -u origin main
 3. Secrets en GitHub: `DOCKER_USERNAME` y `DOCKER_PASSWORD` (el token).
 
 ## 4. Base de datos MySQL en la nube
-El backend necesita MySQL y Render no ofrece MySQL gratis. Opciones gratuitas: **Aiven for MySQL** (plan free), TiDB Cloud Serverless o Railway. Cree la base `lab12026p` y anote host, puerto, usuario y contraseña. Con ellos arme:
-`DB_URL=jdbc:mysql://HOST:PORT/lab12026p?sslMode=REQUIRED&serverTimezone=UTC`
+El URI de **Aiven for MySQL** con esquema `mysql://` no se debe copiar literalmente a `DB_URL`: Spring Boot y MySQL Connector/J requieren `jdbc:mysql://`, y el parámetro SSL debe escribirse `sslMode=REQUIRED`. Para Render, configure `DB_URL` usando el host, puerto y base indicados por Aiven en ese formato JDBC. El nombre de la base es el segmento después del host y el puerto. El proyecto no incluye migraciones SQL/Flyway ni fija el esquema en las entidades JPA; para desarrollo local la documentación histórica usa `lab12026p`, mientras que en Render debe usarse la base existente que indique Aiven.
 
 ## 5. Render (proveedor cloud)
 1. https://render.com → *New → Web Service* → **Existing Image** → `docker.io/<DOCKER_USERNAME>/lab12026p:latest` (la imagen debe existir: haga primero un push a `main` con Docker Hub configurado, o súbala una vez a mano).
-2. *Environment*: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`.
-3. *Settings → Deploy Hook*: copiar la URL → secret `RENDER_DEPLOY_HOOK_URL`.
-4. URL pública del servicio (ej. `https://lab12026p.onrender.com`) → secret `RENDER_APP_URL`.
-5. En GitHub, *Settings → Environments → New environment* llamado `production` (el job `deploy` lo usa).
+2. *Environment*: configure `DB_URL` con la URL JDBC de Aiven, `DB_USERNAME` con el usuario de Aiven y `DB_PASSWORD` con la contraseña guardada como secreto. No suba la contraseña al repositorio.
+3. En GitHub, *Settings → Environments → New environment*, crear el entorno `production` que usa el job `deploy`.
+4. En *Settings → Environments → production*, agregar la URL del Deploy Hook como secret `RENDER_DEPLOY_HOOK_URL`.
+5. En el mismo entorno, agregar la URL pública `https://lab12026p-latest-gkmy.onrender.com` como secret `RENDER_APP_URL`. El workflow acepta la URL con o sin `/` final.
 
 ## 6. Pull requests con trunk-based (evidencia exigida)
 ```bash

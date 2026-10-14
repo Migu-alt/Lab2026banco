@@ -22,25 +22,23 @@ Aplicación bancaria sencilla compuesta por:
 
 ## 2. Configuración de la base de datos
 
-El backend espera una base de datos MySQL local ya creada:
+Para desarrollo local, el backend espera una base MySQL llamada `lab12026p` en `localhost:3306`, con usuario `root`. La contraseña se lee de `DB_PASSWORD` y no tiene una credencial real predeterminada. Puedes sobrescribir la conexión con `DB_URL`, `DB_USERNAME` y `DB_PASSWORD`.
 
-- Host: `localhost`
-- Puerto: `3306`
-- Base de datos: `lab12026p`
-- Usuario: `root`
-- Password: se proporciona mediante la variable de entorno `DB_PASSWORD`; no se guarda en el repositorio.
+El URI que entrega Aiven con el esquema `mysql://` no se puede usar literalmente como `DB_URL`: Spring Boot y MySQL Connector/J requieren el esquema `jdbc:mysql://`, y el parámetro SSL se escribe `sslMode=REQUIRED`. Para Render, configura `DB_URL` así:
 
-Define `DB_PASSWORD` con la contraseña de tu MySQL local antes de iniciar el backend. En PowerShell:
+```text
+jdbc:mysql://lab12026p-lab12026p.d.aivencloud.com:24727/defaultdb?sslMode=REQUIRED
+```
+
+Configura `DB_USERNAME` con el usuario de Aiven y `DB_PASSWORD` con su contraseña como variable secreta. Si quieres conectarte a Aiven desde tu máquina, usa la misma URL JDBC. Para desarrollo local sin variables, se mantiene el valor predeterminado local.
+
+Para ejecutar localmente con la base local, define su contraseña antes de iniciar el backend:
 
 ```powershell
-$env:DB_PASSWORD = "<tu-clave-local>"
+$env:DB_PASSWORD = "<tu-contraseña>"
 ```
 
-Crea la base de datos si no existe (no se incluyen scripts destructivos):
-
-```sql
-CREATE DATABASE IF NOT EXISTS lab12026p;
-```
+No guardes contraseñas reales en el repositorio. En Render configura las tres variables como variables de entorno/secreto; allí `DB_URL` debe apuntar a la base de Aiven que vayas a usar (la ruta incluida en la URL identifica la base de datos).
 
 Con `spring.jpa.hibernate.ddl-auto=update`, Hibernate crea/actualiza las tablas automáticamente al arrancar.
 
@@ -146,7 +144,9 @@ Archivo: `.github/workflows/build.yml`
 | `SONAR_TOKEN` | Token de SonarCloud |
 | `DOCKER_USERNAME` / `DOCKER_PASSWORD` | Credenciales (o access token) de Docker Hub |
 | `RENDER_DEPLOY_HOOK_URL` | Deploy Hook del servicio en Render |
-| `RENDER_APP_URL` | URL pública del servicio, ej. `https://lab12026p.onrender.com` |
+| `RENDER_APP_URL` | URL pública del servicio; el workflow acepta con o sin `/` final |
+
+Configura `RENDER_DEPLOY_HOOK_URL` y `RENDER_APP_URL` como secretos del entorno `production` (el job `deploy` usa ese entorno). Para este proyecto, `RENDER_APP_URL` es `https://lab12026p-latest-gkmy.onrender.com`.
 
 ### Variables de entorno del backend (en la nube)
 

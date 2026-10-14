@@ -148,12 +148,15 @@ jobs:
         env:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
+          : "${RENDER_DEPLOY_HOOK_URL:?Missing RENDER_DEPLOY_HOOK_URL secret}"
           curl --fail --silent --show-error -X POST "$RENDER_DEPLOY_HOOK_URL"
 
       - name: Smoke test (espera a que la API responda)
         env:
-          APP_URL: ${{ secrets.RENDER_APP_URL }}   # ej: https://lab12026p.onrender.com
+          APP_URL: ${{ secrets.RENDER_APP_URL }}
         run: |
+          : "${APP_URL:?Missing RENDER_APP_URL secret}"
+          APP_URL="${APP_URL%/}"
           for i in $(seq 1 20); do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$APP_URL/api/customers" || true)
             echo "Intento $i -> HTTP $code"
